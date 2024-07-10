@@ -21,3 +21,35 @@ We propose Noise Calibration,a method that substantially improves consistency of
 ✅ Totally <span style="color: red; font-weight: bold">no</span> training &nbsp;&nbsp;&nbsp;&nbsp;
 ✅ Less than <span style="color: red; font-weight: bold">10%</span> extra time &nbsp;&nbsp;&nbsp;&nbsp;
 ✅ Plug-and-play <span style="color: red; font-weight: bold"></span>  &nbsp;&nbsp;&nbsp;&nbsp;
+
+## Code of Noise Calibration
+```Python
+import torch
+import torch.fft as fft
+
+
+def get_low_or_high_fft(x, scale, is_low=True):
+    # FFT
+    x_freq = fft.fftn(x, dim=(-2, -1))
+    x_freq = fft.fftshift(x_freq, dim=(-2, -1))
+    B, C, T, H, W = x_freq.shape
+    
+    # extract
+    if is_low:
+        mask = torch.zeros((B, C, T, H, W), device=x.device)
+        crow, ccol = H // 2, W // 2
+        mask[..., crow - int(crow * scale):crow + int(crow * scale), ccol - int(ccol * scale):ccol + int(ccol * scale)] = 1
+    else:
+        mask = torch.ones((B, C, T, H, W), device=x.device)
+        crow, ccol = H // 2, W //2
+        mask[..., crow - int(crow * scale):crow + int(crow * scale), ccol - int(ccol * scale):ccol + int(ccol * scale)] = 0
+    x_freq = x_freq * mask
+    
+    # IFFT
+    x_freq = fft.ifftshift(x_freq, dim=(-2, -1))
+    x_filtered = fft.ifftn(x_freq, dim=(-2, -1)).real
+    return x_filtere
+
+
+
+```
