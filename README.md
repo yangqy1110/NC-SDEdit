@@ -14,3 +14,10 @@
 </div>
 
 In *European Conference on Computer Vision (ECCV) 2024*
+
+## Introduction
+We propose Noise Calibration,a method that substantially improves consistency of content between enhanced videos based on SDEdit and original videos.
+
+✅ Totally <span style="color: red; font-weight: bold">no</span> training &nbsp;&nbsp;&nbsp;&nbsp;
+✅ Less than <span style="color: red; font-weight: bold">10%</span> extra time &nbsp;&nbsp;&nbsp;&nbsp;
+✅ Plug-and-play <span style="color: red; font-weight: bold"></span>  &nbsp;&nbsp;&nbsp;&nbsp;
