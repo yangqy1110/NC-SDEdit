@@ -12,3 +12,5 @@
 <div>
     <sup>1</sup> Dalian University of Technology &nbsp; <sup>2</sup> Tencent AI Lab &nbsp; <sup>*</sup> Corresponding Author &nbsp; 
 </div>
+
+In *European Conference on Computer Vision (ECCV) 2024*
