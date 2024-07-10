@@ -50,11 +50,11 @@ def get_low_or_high_fft(x, scale, is_low=True):
     x_filtered = fft.ifftn(x_freq, dim=(-2, -1)).real
     return x_filtere
 -------------------------------------------------------------------------------------------------------------------------------------------------------
-### Noise Calibration
+### Noise Calibration(Algorithm 1)
 e_t = torch.randn_like(x_r)
 for _ in range(N):
   x = a_t.sqrt() * x_r + sqrt_one_minus_at * e_t
-  e_t_theta = self.model.apply_model(x, t, c, **kwargs)
+  e_t_theta = self.model.apply_model(x, t, c, **kwargs) # 
   x_0_t = (x - sqrt_one_minus_at * e_t_theta) / a_t.sqrt()
   e_t = e_t_theta + a_t.sqrt() / sqrt_one_minus_at * (get_low_or_high_fft(x_0_t, scale, is_low=False) - get_low_or_high_fft(x_r, scale, is_low=False))
 
