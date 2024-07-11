@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="Self-Cascade" />
+  <meta property="og:description" content="Creating your videos in any style!" />
+  <meta property="og:url" content="URL OF THE WEBSITE" />
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="pics/icon.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+
+  <meta name="twitter:title" content="Self-Cascade">
+  <meta name="twitter:description" content="make a cheap adapt to higher resolution!">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="pics/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Make a Cheap Scaling: A Self-Cascade Diffusion Model for Higher-Resolution Adaptation</title>
+  <link rel="icon" type="image/x-icon" href="pics/icon.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title"><small><span style="font-weight: bold; font-style: italic"><strong>Make a Cheap Scaling</strong></span> : A Self-Cascade Diffusion Model for Higher-Resolution Adaptation</small></h1>
+            <!-- Style Adapter</h1> -->
+            <div class="is-size-5 publication-authors">
+              <small>
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://github.com/GuoLanqing/">Lanqing Guo</a><sup>* 1</sup>,</span>
+              <span class="author-block">
+                <a href="https://github.com/YingqingHe/">Yingqing He</a><sup>* 2</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=6UPJSvwAAAAJ&hl=zh-CN/">Haoxin Chen</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://menghanxia.github.io/">Menghan Xia</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://vinthony.github.io/academic/">Xiaodong Cun</a><sup>2</sup>,</span>
+              </span>
+              <br>
+              <span class="author-block">
+                <a href="https://wyf0912.github.io/">Yufei Wang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://siyuhuang.github.io/">Siyu Huang</a><sup>4</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://yzhang2016.github.io/">Yong Zhang</a><sup># 2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://xinntao.github.io/">Xintao Wang</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a
+                  href="https://cqf.io/">Qifeng Chen</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a
+                  href="https://scholar.google.com/citations?user=4oXBp9UAAAAJ&hl=zh-CN">Ying
+                  Shan</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a
+                  href="https://personal.ntu.edu.sg/bihan.wen/">Bihan
+                  Wen</a><sup># 1</sup>
+              </span>
+              </small>
+            </div>
+           
+            <div class="is-size-5 publication-authors">
+              <small>
+              <span class="author-block"><sup>1</sup>Nanyang Technological University,</span>&nbsp;
+              <span class="author-block"><sup>2</sup>Tencent AI Lab,</span>&nbsp;
+              <span class="author-block"><sup>3</sup>HKUST</span>,</span>&nbsp;
+              <span class="author-block"><sup>4</sup>Clemson University</span></small>
+              <br>
+              <small>(<sup>*</sup> Equal Contribution &nbsp;&nbsp; <sup>#</sup> Corresponding Author) </small>
+            </div>
+           
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2402.10491" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"> 
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+
+                <!-- Supplementary PDF link -->
+                <span class="link-block">
+                  <a href="" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Supplementary</span>
+                  </a>
+                </span>
+
+                <!-- Github link -->
+                <span class="link-block">
+                  <a href="https://github.com/GuoLanqing/Self-Cascade/" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Teaser video-->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div class="columns is-centered has-text-centered">
+          <div class="column custom-width">
+            <center>
+            <div class="content has-text-justified">
+              <div id="results-carousel" class="carousel results-carousel" align="center">
+                <div class="item item-video1" style="text-align:center;width: 70%;"> 
+                  <table style="border-collapse: collapse; border-spacing: 0;">
+                    <tbody>
+                      <th style="font-size: 20px; text-align: center;">Base Model (256*256)</th>
+                      <th style="font-size: 20px; text-align: center;">Ours (512*512)</th>
+                      <!-- <th style="font-size: 16px; text-align: center;">Ours (512*512)</th> -->
+
+                      <tr>
+                        <td style="vertical-align:middle;"><a href="video_res/0027_lr.mp4"><video height="300" src="video_res/0027_lr.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/002_ours_t.mp4"><video height="600" src="assets_ours/ours/002_ours_t.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="2">
+                          <p class="prompt_global_vid">“A confused grizzly bear in calculus class.”</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-video2" style="text-align:center;width: 70%;"> 
+                  <table style="border-collapse: collapse; border-spacing: 0;">
+                    <tbody>
+                      <th style="font-size: 20px; text-align: center;">Base Model (256*256)</th>
+                      <th style="font-size: 20px; text-align: center;">Ours (512*512)</th>
+                      <!-- <th style="font-size: 16px; text-align: center;">Ours (512*512)</th> -->
+
+                      <tr>
+                        <td style="vertical-align:middle;"><a href="video_res/0019_lr.mp4"><video height="300" src="video_res/0019_lr.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="video_res/0019_randk0_002.mp4"><video height="600" src="video_res/0019_randk0_002.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="2">
+                          <p class="prompt_global_vid">“A confused grizzly bear in calculus class.”</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-video3" style="text-align:center;width: 70%;"> 
+                  <table style="border-collapse: collapse; border-spacing: 0;">
+                    <tbody>
+                      <th style="font-size: 20px; text-align: center;">Base Model (256*256)</th>
+                      <th style="font-size: 20px; text-align: center;">Ours (512*512)</th>
+                      <!-- <th style="font-size: 16px; text-align: center;">Ours (512*512)</th> -->
+
+                      <tr>
+                        <td style="vertical-align:middle;"><a href="video_res/0034_pivot_randk0_001.mp4"><video height="300" src="video_res/0034_pivot_randk0_001.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="video_res/0034_randk0_001.mp4"><video height="600" src="video_res/0034_randk0_001.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="2">
+                          <p class="prompt_global_vid">“A confused grizzly bear in calculus class.”</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-video4" style="text-align:center;width: 70%;"> 
+                  <table style="border-collapse: collapse; border-spacing: 0;">
+                    <tbody>
+                      <th style="font-size: 20px; text-align: center;">Base Model (256*256)</th>
+                      <th style="font-size: 20px; text-align: center;">Ours (512*512)</th>
+                      <!-- <th style="font-size: 16px; text-align: center;">Ours (512*512)</th> -->
+
+                      <tr>
+                        <td style="vertical-align:middle;"><a href="video_res/0157_pivot_randk0_001.mp4"><video height="300" src="video_res/0157_pivot_randk0_001.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="video_res/0157_randk0_001.mp4"><video height="600" src="video_res/0157_randk0_001.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="2">
+                          <p class="prompt_global_vid">“A confused grizzly bear in calculus class.”</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+        </center>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End teaser video -->
+
+
+
+  <!-- Paper abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Diffusion models have proven to be highly effective in image and video generation; however, they still face composition challenges when generating images of varying sizes due to single-scale training data. 
+              Adapting large pre-trained diffusion models for higher resolution demands substantial computational and optimization resources, yet achieving a generation capability comparable to low-resolution models remains elusive.
+              This paper proposes a novel self-cascade diffusion model that leverages the rich knowledge gained from a well-trained low-resolution model for rapid adaptation to higher-resolution image and video generation, employing either tuning-free or cheap upsampler tuning paradigms.
+              Integrating a sequence of multi-scale upsampler modules, the self-cascade diffusion model can efficiently adapt to a higher resolution, preserving the original composition and generation capabilities.
+              We further propose a pivot-guided noise re-schedule strategy to speed up the inference process and improve local structural details.
+  Compared to full fine-tuning, our approach achieves a $5\times$ training speed-up and requires only an additional 0.002M tuning parameters. Extensive experiments demonstrate that our approach can quickly adapt to higher resolution image and video synthesis by fine-tuning for just 10k steps, with virtually no additional inference time.
+  
+              <!-- In this paper, we uncover the untapped potential of diffusion U-Net, which serves as a <strong>"free lunch"</strong> that substantially improves the generation quality on the fly. We initially investigate the key contributions of the U-Net architecture to the denoising process and identify that its main backbone primarily contributes to denoising, whereas its skip connections mainly introduce high-frequency features into the decoder module, causing the network to overlook the backbone semantics. Capitalizing on this discovery, we propose a simple yet effective method-termed <strong>"FreeU"</strong> - that enhances generation quality without additional training or finetuning. Our key insight is to strategically re-weight the contributions sourced from the U-Net's skip connections and backbone feature maps, to leverage the strengths of both components of the U-Net architecture. Promising results on image and video generation tasks demonstrate that our FreeU can be readily integrated to existing diffusion models, e.g., Stable Diffusion, DreamBooth, ModelScope, Rerender and ReVersion, to improve the generation quality with only a few lines of code. <strong>All you need is to adjust two scaling factors during inference.</strong> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+
+
+  <!-- Paper poster -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-">
+            <h2 class="title is-3">Self-Cascade Diffusion Model</h2>
+            <!-- <div class="content has-text-justified">
+              <td colspan="3">
+                <p>
+                  We propose a method to equip pre-trained Text-to-Video (T2V) models with a style adapter,
+                  allowing for the generation of stylized videos based on both a text prompt and a style reference
+                  image.
+                  The overview diagram is illustrated as the following figure.
+                  In this framework, the textual description dictates the video content,
+                  while the style image governs the visual style, ensuring a disentangled control over the video
+                  generation process.
+                </p>
+                <p>
+                  Given the limited availability of stylized videos, we employ a two-stage training strategy.
+                  Initially, we utilize an image dataset abundant in artistic styles to learn reference-based style
+                  modulation.
+                  Subsequently, adaptation finetuning on a mixed dataset of style images and realistic videos is
+                  conducted to improve the temporal
+                  quality of the generated videos.
+                </p>
+
+              </td>
+            </div> -->
+            <div class="columns is-centered has-text-justified">
+              <td colspan="3">
+                <img src="./pipeline.png" alt="" width="800px" />
+              </td>
+            </div>
+            <p>
+              We propose FreeU, a method that substantially improves diffusion model sample quality at no costs: no training, no additional
+              parameter introduced, and no increase in memory or sampling time.
+            </p>
+            <!-- <p><br></p> -->
+          </div>
+  </section>
+ <!--/ Framework. -->
+<!-- <section class="section" style="margin-top:-120px;">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <div class="section-title has-text-centered" >
+          <h2 class="title is-3 is-centered">Self-Cascade Diffusion Model</h2>
+        </div>
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <div class="publication-img">
+              <img id="architecture" src="./pipeline.png" style="width:800px; margin-top:10px;margin-bottom:10px;"/>
+            </div>
+          </div>
+        </div>
+        <p>
+          We propose FreeU, a method that substantially improves diffusion model sample quality at no costs: no training, no additional
+          parameter introduced, and no increase in memory or sampling time.
+        </p>
+    </div>
+  </div>
+</section> -->
+  <!--End paper poster -->
+
+
+  <!-- Video grid single ref -->
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column custom-width">
+            <h2 class="title is-3">Text to Image</h2>
+            <h2 class="subtitle has-text-centered">Samples with 2048*2048 generated by SD 2.1 training with 512*512.</h2>
+
+            <!-- <h2 class="title is-4"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b> Single Reference</h2> -->
+            <div class="content has-text-justified my_link">
+              <!-- <td colspan="3">
+                <p>
+                  We present the comparison results of our method with other single reference style-guided Text-to-Video methods, including:
+                  <ul>
+                    <li>VideoComposer<a href="#videocomposer">[1]</a></li>
+                    <li>VideoCrafter*(VideoCrafter<a href="#videocrafter">[2]</a> equipped with GPT-4v<a href="#gpt4v">[3]</a>)</li>
+                    <li>Gen2*(Gen2<a href="#gen2">[4]</a> equipped with GPT-4v<a href="#gpt4v">[3]</a>)</li>
+                  </ul>
+                </p>
+
+                <p> More comparison results can be found in Our <a href="sm/supp.html">Supplementary</a>. </p>
+
+                <p><br></p>
+              </td> -->
+  
+                <div id="results-carousel" class="carousel results-carousel" align="center">
+                  <div class="img-txt">
+                    <img src="image_res/sd2/2048/grid-0131-Oil-painting-of-a-fox-in-the-cornfield-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                    <p class="prompt_global_vid">"Oil painting of a fox in the cornfield."</p>
+                  </div>
+                  <div class="img-txt">
+                  <img src="image_res/sd2/2048/grid-0101-As-I-turned-the-pages,-a-magnificent-tree-sprouted-from-the-book,-its-branches-laden-with-ripe-fruit-that-fell-to-the-floor,-filling-the-room-with-a-sweet,-intoxicating-aroma,-highly-detailed,-8k-seed999.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid"> "As I turned the pages, a magnificent tree sprouted
+                    from the book, its branches laden with ripe fruit
+                    that fell to the floor, filling the room with a sweet,
+                    intoxicating aroma, highly detailed, 8k."</p>
+                </div>
+                <!-- <div class="img-txt">
+                  <img src="image_res/sd2/2048/grid-0103-A-smiling-white-bear,-wearing-a-black-tshirt,-wearing-a-green-apron,-wearing-black-sunglasses,-making-smoothies,-cinematic,-fashion-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                  <p class="prompt_global_vid"> “Close up of a pair of vibrant koi fish swim upstream, surmounting a waterfall, oil painting style”</p>
+                </div> -->
+                <div class="img-txt">
+                  <img src="image_res/sd2/2048/grid-0120-A-photo-of-a-Corgi-dog-wearing-sunglasses-skateboarding-in-Times-Square.-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                  <p class="prompt_global_vid"> "A photo of a Corgi dog wearing sunglasses skateboarding in Times Square."</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sd2/2048/grid-0126-A-tiger-walks-in-a-snowy-winter-in-country-road-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                  <p class="prompt_global_vid">"“A tiger walks in a snowy winter
+                    in country road."</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sd2/2048/grid-0129-Maine-Coon-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                  <p class="prompt_global_vid">“Maine Coon.”</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sd2/2048/grid-0135-The-winding-Great-Wall-of-China-in-autumn-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                  <p class="prompt_global_vid">"The winding Great Wall of China in autumn."</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sd2/2048/grid-0146-A-photo-of-a-city-skyline-at-night-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                  <p class="prompt_global_vid"> "A photo of a city skyline at night."
+                  </p>
+                </div>
+              </div>
+              </div>
+
+              
+              <h2 class="subtitle has-text-centered">Samples with 1024*1024 generated by SD 2.1 training with 512*512.</h2>
+              <div id="results-carousel" class="carousel results-carousel" align="center">
+                <div class="item item-image1">
+                  <table  style="border-collapse: separate; border-spacing: 0px 0px;">
+                    <tbody>
+                      <th style="font-size: 16px; text-align: center;">Attn-SF(<a href="#animatediff">[5]</a>) </th>
+                      <th style="font-size: 16px; text-align: center;">ScaleCrafter(<a href="#animatediff">[5]</a>) </th>
+                      <th style="font-size: 16px; text-align: center;">Ours-TF </th>
+                      <tr>
+                        <td><img src="image_res/sd2/comparison/attsf1.jpg" alt="图片" style="height: 350px;">
+                        </td> 
+                        <td><img src="image_res/sd2/comparison/scalecrafter1.jpg" alt="图片" style="height: 350px;">
+                        </td>
+                        <td><img src="image_res/sd2/comparison/ourstf1.jpg" alt="图片" style="height: 350px;">
+                        </td>
+                      </tr>
+                      <th style="font-size: 16px; text-align: center;">Full Fine-Tuning </th>
+                      <th style="font-size: 16px; text-align: center;">LORA Rank-4 </th> 
+                      <th style="font-size: 16px; text-align: center;">Ours-T </th>
+                      <tr>
+                        <td><img src="image_res/sd2/comparison/fullft1.jpg" alt="图片" style="height: 350px;">
+                        </td> 
+                        <td><img src="image_res/sd2/comparison/lora1.jpg" alt="图片" style="height: 350px;">
+                        </td>
+                        <td><img src="image_res/sd2/comparison/ourst1.jpg" alt="图片" style="height: 350px;">
+                        </td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> "An AI art piece that highlights the excitement of a turbo boost, with Mario's kart emitting
+                            flames and sparks as he accelerates."</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-image2">
+                  <table  style="border-collapse: separate; border-spacing: 0px 10px;">
+                    <tbody>
+                      <th style="font-size: 16px; text-align: center;">Attn-SF(<a href="#animatediff">[5]</a>) </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">ScaleCrafter(<a href="#animatediff">[5]</a>) </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">Ours-TF </th>
+                      <tr>
+                        <td><img src="image_res/sd2/comparison/attsf2.jpg" alt="图片" style="height: 350px;">
+                        </td> <td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/scalecrafter2.jpg" alt="图片" style="height: 350px;">
+                        </td><td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/ourstf2.jpg" alt="图片" style="height: 350px;">
+                        </td>
+                      </tr>
+                      <th style="font-size: 16px; text-align: center;">Full Fine-Tuning </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">LORA Rank-4 </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">Ours-T </th>
+                      <tr>
+                        <td><img src="image_res/sd2/comparison/fullft2.jpg" alt="图片" style="height: 350px;">
+                        </td> <td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/lora2.jpg" alt="图片" style="height: 350px;">
+                        </td><td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/ourst2.jpg" alt="图片" style="height: 350px;">
+                        </td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> "A ginger cat is eating doughnut."</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-image3">
+                  <table  style="border-collapse: separate; border-spacing: 0px 3px;">
+                    <tbody>
+                      <th style="font-size: 16px; text-align: center;">Attn-SF(<a href="#animatediff">[5]</a>) </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">ScaleCrafter(<a href="#animatediff">[5]</a>) </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">Ours-TF </th>
+                      <tr>
+                        <td><img src="image_res/sd2/comparison/attsf3.jpg" alt="图片" style="height: 350px;">
+                        </td> <td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/scalecrafter3.jpg" alt="图片" style="height: 350px;">
+                        </td><td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/ourstf3.jpg" alt="图片" style="height: 350px;">
+                        </td>
+                      </tr>
+                      <th style="font-size: 16px; text-align: center;">Full Fine-Tuning </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">LORA Rank-4 </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">Ours-T </th>
+                      <tr>
+                        <td><img src="image_res/sd2/comparison/fullft3.jpg" alt="图片" style="height: 350px;">
+                        </td> <td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/lora3.jpg" alt="图片" style="height: 350px;">
+                        </td><td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/ourst3.jpg" alt="图片" style="height: 350px;">
+                        </td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> "A retro poster of a post apocalyptic dystopian universe, of a mustang style muscle car,
+                            extreme color scheme, mad max themed, driving speeding on a desert road, fleeting from being
+                            chased by an aggressive giant fire breathing dragon, in action shot, highly detailed digital art."</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-image4">
+                  <table  style="border-collapse: separate; border-spacing: 0px 3px;">
+                    <tbody>
+                      <th style="font-size: 16px; text-align: center;">Attn-SF(<a href="#animatediff">[5]</a>) </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">ScaleCrafter(<a href="#animatediff">[5]</a>) </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">Ours-TF </th>
+                      <tr>
+                        <td><img src="image_res/sd2/comparison/attsf4.jpg" alt="图片" style="height: 350px;">
+                        </td> <td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/scalecrafter4.jpg" alt="图片" style="height: 350px;">
+                        </td><td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/ourstf4.jpg" alt="图片" style="height: 350px;">
+                        </td>
+                      </tr>
+                      <th style="font-size: 16px; text-align: center;">Full Fine-Tuning </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">LORA Rank-4 </th> <td>&nbsp;</td>
+                      <th style="font-size: 16px; text-align: center;">Ours-T </th>
+                      <tr>
+                        <td><img src="image_res/sd2/comparison/fullft4.jpg" alt="图片" style="height: 350px;">
+                        </td> <td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/lora4.jpg" alt="图片" style="height: 350px;">
+                        </td><td>&nbsp;&nbsp;</td>
+                        <td><img src="image_res/sd2/comparison/ourst4.jpg" alt="图片" style="height: 350px;">
+                        </td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> "Emma Watson as Galadriel, lord of the rings, intricate details, ultra realistic, 8k, soft lighting,
+                            romantic lighting."</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+
+             
+             
+                <!-- <div class="img-txt">
+                <img src="image_res/sd2/2048/grid-0101-As-I-turned-the-pages,-a-magnificent-tree-sprouted-from-the-book,-its-branches-laden-with-ripe-fruit-that-fell-to-the-floor,-filling-the-room-with-a-sweet,-intoxicating-aroma,-highly-detailed,-8k-seed999.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                <p>Resolution: 4096x4096; Prompt: “Miniature house with plants in the potted area, hyper realism, dramatic ambient lighting, high detail”</p>
+              </div> -->
+              <!-- <div class="img-txt">
+                <img src="image_res/sd2/2048/grid-0103-A-smiling-white-bear,-wearing-a-black-tshirt,-wearing-a-green-apron,-wearing-black-sunglasses,-making-smoothies,-cinematic,-fashion-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                <p>Resolution: 4096x4096; Prompt: “Close up of a pair of vibrant koi fish swim upstream, surmounting a waterfall, oil painting style”</p>
+              </div> -->
+              <!-- <div class="img-txt">
+                <img src="image_res/sd2/2048/grid-0120-A-photo-of-a-Corgi-dog-wearing-sunglasses-skateboarding-in-Times-Square.-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                <p>Resolution: 4096x4096; Prompt: “North sunset in Norway. Stunning sea view from mountains. Beautiful bay in evening sunlight. Lofoten islands landscape.”</p>
+              </div> -->
+              <!-- <div class="img-txt">
+                <img src="image_res/sd2/2048/grid-0126-A-tiger-walks-in-a-snowy-winter-in-country-road-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                <p>Resolution: 4096x2048; Prompt: “A cherry blossom tree in full bloom amidst an arctic tundra showering petals on a polar bear”</p>
+              </div> -->
+              <!-- <div class="img-txt">
+                <img src="image_res/sd2/2048/grid-0126-A-tiger-walks-in-a-snowy-winter-in-country-road-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                <p>Resolution: 4096x2048; Prompt: “baby succulents from ikea interior pinterest plants cacti and flora. Black Bedroom Furniture Sets. Home Design Ideas”</p>
+              </div> -->
+              <!-- <div class="img-txt">
+                <img src="image_res/sd2/2048/grid-0129-Maine-Coon-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                <p>Resolution: 4096x2048; Prompt: “Handmade Watercolor Painting, home decor”</p>
+              </div>
+              <div class="img-txt">
+                <img src="image_res/sd2/2048/grid-0131-Oil-painting-of-a-fox-in-the-cornfield-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                <p>Resolution: 4096x2048; Prompt: “Placemats Sunflower Summer Landscape Heat Stain Resistant Non-Slip Place Mats for Kitchen Dining Table 12 x 18 Inch 4 Pc”</p>
+              </div>
+              <div class="img-txt">
+                <img src="image_res/sd2/2048/grid-0135-The-winding-Great-Wall-of-China-in-autumn-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                <p>Resolution: 4096x2048; Prompt: “Spring Magnolia and Thistle bouquet. Featuring bronze magnolia leaves, woodland greeneries, pussywillow, blush, scarlet and pink peonies, cream roses, sea holly thistle and cream, gold and navy ribbons..jpg”</p>
+              </div>
+              <div class="img-txt">
+                <img src="image_res/sd2/2048/grid-0146-A-photo-of-a-city-skyline-at-night-seed999.jpg" alt="图片" style="height: 700px; width: 700px;">
+                <p>Resolution: 2048x2048; Prompt: “16 Inch Anime The Jungle Book Backpack For Teenagers Boys Girls School Bags Travel Bag Children School Backpacks Gift”</p>
+              </div> -->
+            </div>
+
+            <p><br></p>
+            <h2 class="subtitle has-text-centered">Samples with 4096*4096 generated by SD XL training with 1024*1024.</h2>
+
+            <!-- <h2 class="title is-4"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b> Single Reference</h2> -->
+            <div class="content has-text-justified my_link">
+              <!-- <td colspan="3">
+                <p>
+                  We present the comparison results of our method with other single reference style-guided Text-to-Video methods, including:
+                  <ul>
+                    <li>VideoComposer<a href="#videocomposer">[1]</a></li>
+                    <li>VideoCrafter*(VideoCrafter<a href="#videocrafter">[2]</a> equipped with GPT-4v<a href="#gpt4v">[3]</a>)</li>
+                    <li>Gen2*(Gen2<a href="#gen2">[4]</a> equipped with GPT-4v<a href="#gpt4v">[3]</a>)</li>
+                  </ul>
+                </p>
+
+                <p> More comparison results can be found in Our <a href="sm/supp.html">Supplementary</a>. </p>
+
+              </td> -->
+         
+                <div id="results-carousel" class="carousel results-carousel" align="center">
+                  <div class="img-txt">
+                  <img src="image_res/sdxl/4096/res_final_77_seed23.jpg" alt="图片" style="height: 1000px; width: 1000px;" >
+                  <p class="prompt_global_vid"> “Soft pink roses, white Chinese peony, tiny apple blossom flowers, eucalyptus leaves, twigs of cranberries, twigs of copper pepper berries all arrangement into a cute beautiful flowers arrangement on a pink nickel mug. The mug is sitting on a thick white book with golden cover image design. Sunny, bright image. Ad copy, huge copy space on top of the image, negative space, hd, 8k, blurry dreamy background, beautiful pictures. 
+                    ”</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/4096/res_final_103_seed23.jpg" alt="图片" style="height: 1000px; width: 1000px;" >
+                  <p class="prompt_global_vid"> “An ostrich walking in the desert, photorealistic, 4k."                  </p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/4096/res_final_121_'Realistic Giraffe snail'seed{seed}.jpg" alt="图片" style="height: 1000px; width: 1000px;" >
+                  <p class="prompt_global_vid">  "Realistic Giraffe snail."</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/4096/res_final_21_seed23.jpg" alt="图片" style="height: 1000px; width: 1000px;" >
+                  <p class="prompt_global_vid">“A painting of a fish on a black background, a digital painting, by Jason Benjamin, shutterstock, colorful vector illustration, mixed media style illustration, epic full color illustration, mascot illustration.                    ”</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/4096/res_final_119_seed23.jpg" alt="图片" style="height: 1000px; width: 1000px;" >
+                  <p class="prompt_global_vid"> "A cute little matte low poly isometric cherry blossom forest island, waterfalls, lighting, soft shadows, trending on Artstation, 3d render, monument valley, fez video game.
+                    "</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/4096/res_final_61_seed23.jpg" alt="图片" style="height: 1000px; width: 1000px;" >
+                  <p class="prompt_global_vid"> "A small cactus with a happy face in the Sahara desert.
+                    "</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/2048/res1_24_seed23.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid">"A woman in a pink dress walking down a street, cyberpunk art, inspired by Victor Mosquera, conceptual art, style of raymond swanland, yume nikki, restrained, robot girl, ghost in the shell.
+                    "</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/2048/res1_140_seed23.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid"> "(fractal crystal skin:1.1) with( ice crown:1.4) woman, white crystal skin, (fantasy:1.3), (Anna Dittmann:1.3)."</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/2048/res1_62_seed23.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid"> “Isometric style farmhouse from RPG game, unreal engine, vibrant, beautiful, crisp, detailed, ultra detailed, intricate.”</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/2048/res1_158_seed23.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid">“Chinese architecture, ancient style,mountain, bird, lotus, pond, big tree,(thick paint style:1.3), (wide angle lens:1.4), (best lighting), 4K Unity, (super-detailed CG: 1.2) , (8K: 1.2), octane rendering.”</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/2048/res1_52_seed23.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid"> "Ethereal fantasy concept art of thunder god with hammer. magnificent, celestial, ethereal, painterly, epic, majestic, magical, fantasy art, cover art, dreamy."
+                    "</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/2048/res1_43_seed33.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid">"Create a Van Gogh style starring Sky with Thoughtful John Wick , painting, photo."</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/2048/res1_49_seed23.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid"> "(Ultrarealistic:1.3), (Award Winning Photo:1.3), a man stands near a massive lonely magic (glowing tree:1.3) in the middle of the snow field, (branches radiated a soft warm glow:1.3), full moon, winter night, deep snow everywhere, (otherworldly glow:1.2), (on a background of starry night:1.3), masterpiece, (realism:1.2), high contrast, (photorealism digital art:1.3), Intricate, 8k HD high definition detailed, HDR, hyper detailed, best quality."
+                  </p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/2048/res1_101_seed43.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid">"Steampunk makeup, in the style of vray tracing, colorful impasto, uhd image, indonesian art, fine feather details with bright red and yellow and green and pink and orange colours, intricate patterns and details, dark cyan and amber makeup. Rich colourful plumes. Victorian style."                  </p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/2048/res1_101_seed33.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid"> "A traveler navigating via a boat in
+                    countless mountains, Chinese ink
+                    painting."</p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/2048/res1_129_seed23.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid">"A marble statue of a Koala DJ in front of a marble statue of a turntable. The Koala has wearing large marble headphones.""
+                  </p>
+                </div>
+                <div class="img-txt">
+                  <img src="image_res/sdxl/2048/res1_153_seed23.jpg" alt="图片" style="height: 700px; width: 700px;" >
+                  <p class="prompt_global_vid">"A teddy bear is riding bike, high details."
+                  </p>
+                </div>
+              </div>
+              </div>
+
+     
+              <!-- <td colspan="3">
+                <p>
+                  We present the comparison results of our method with other single reference style-guided Text-to-Video methods, including:
+                  <ul>
+                    <li>VideoComposer<a href="#videocomposer">[1]</a></li>
+                    <li>VideoCrafter*(VideoCrafter<a href="#videocrafter">[2]</a> equipped with GPT-4v<a href="#gpt4v">[3]</a>)</li>
+                    <li>Gen2*(Gen2<a href="#gen2">[4]</a> equipped with GPT-4v<a href="#gpt4v">[3]</a>)</li>
+                  </ul>
+                </p>
+
+                <p> More comparison results can be found in Our <a href="sm/supp.html">Supplementary</a>. </p>
+
+                <p><br></p>
+              </td> -->
+
+              </div>
+            </div>
+            <p><br></p>
+          </div>
+        </div>
+  </section>
+  <!-- End video grid single ref -->
+
+
+  <!-- Video grid Extension -->
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column custom-width">
+            <h2 class="title is-3">Text to Video</h2>
+            <h2 class="subtitle has-text-centered">Samples with 512*512 generated by SD 2.1 training with 256*256.</h2>
+            
+            <div class="content has-text-justified my_link">
+              <!-- <td colspan="3">
+                <p>
+                  We present the comparison results of our method with AnimateDiff(<a href="#animatediff">[5]</a>) for multi-reference style-guided Text-to-Video methods.
+                </p>
+                <p> More comparison results can be found in Our <a href="sm/supp.html">Supplementary</a>. </p>
+                <p><br></p>
+              </td> -->
+
+              <div id="results-carousel" class="carousel results-carousel" align="center">
+                <div class="item item-video1">
+                  <table>
+                    <tbody>
+                      <th style="font-size: 20px; text-align: center;">Full-FT (50k)</th>
+                      <th style="font-size: 20px; text-align: center;">LORA-R32 (50k) </th>
+                      <th style="font-size: 20px; text-align: center;">Ours (10k)</th>
+                      <tr>
+                        <td><a href="assets_ours/fullft/001_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/001_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/001_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/001_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/001_ours_t.mp4"><video height="300" src="assets_ours/ours/001_ours_t.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> "Old man walking in the moorland valley, snowing heavily."</p>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td><a href="assets_ours/fullft/002_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/002_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/002_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/002_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/002_ours_t.mp4"><video height="300" src="assets_ours/ours/002_ours_t.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> "A playful kitten bats a ball of yarn with its paw."</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-video2">
+                  <table>
+                    <tbody>
+                      <th style="font-size: 20px; text-align: center;">Full-FT (50k)</th>
+                      <th style="font-size: 20px; text-align: center;">LORA-R32 (50k) </th>
+                      <th style="font-size: 20px; text-align: center;">Ours (10k)</th>
+                      <tr>
+                        <td><a href="assets_ours/fullft/003_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/003_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/003_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/003_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/003_ours_t.mp4"><video height="300" src="assets_ours/ours/003_ours_t.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> "A vibrant hummingbird tirelessly flits between flowers, drinking sweet nectar."</p>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td><a href="assets_ours/fullft/004_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/004_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/004_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/004_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/004_ours_t.mp4"><video height="300" src="assets_ours/ours/004_ours_t.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> "A panda contentedly munches on bamboo leaves, enjoying a tranquil afternoon."</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-video3">
+                  <table>
+                    <tbody>
+                      <th style="font-size: 20px; text-align: center;">Full-FT (50k)</th>
+                      <th style="font-size: 20px; text-align: center;">LORA-R32 (50k) </th>
+                      <th style="font-size: 20px; text-align: center;">Ours (10k)</th>
+                      <tr>
+                        <td><a href="assets_ours/fullft/005_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/005_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/005_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/005_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/005_ours_t.mp4"><video height="300" src="assets_ours/ours/005_ours_t.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr> 
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> "A colorful parrot mimics the voices it hears, much to its human companion's amusement."</p>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td><a href="assets_ours/fullft/006_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/006_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/006_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/006_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/006_ours_t.mp4"><video height="300" src="assets_ours/ours/006_ours_t.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> "A charming raccoon stealthily rummages through a homeowner's trash can."</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-video4">
+                  <table>
+                    <tbody>
+                      <th style="font-size: 20px; text-align: center;">Full-FT (50k)</th>
+                      <th style="font-size: 20px; text-align: center;">LORA-R32 (50k) </th>
+                      <th style="font-size: 20px; text-align: center;">Ours (10k)</th>
+                      <tr>
+                        <td><a href="assets_ours/fullft/007_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/007_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/007_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/007_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/007_ours_t.mp4"><video height="300" src="assets_ours/ours/007_ours_t.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> “A graceful swan glides across a serene pond, exerting minimal effort.”</p>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td><a href="assets_ours/fullft/008_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/008_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/008_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/008_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/008_ours_t.mp4"><video height="300" src="assets_ours/ours/008_ours_t.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid">“A peacock is walking proudly through the garden.”</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-video5">
+                  <table>
+                    <tbody>
+                      <th style="font-size: 20px; text-align: center;">Full-FT (50k)</th>
+                      <th style="font-size: 20px; text-align: center;">LORA-R32 (50k) </th>
+                      <th style="font-size: 20px; text-align: center;">Ours (10k)</th>
+                      <tr>
+                        <td><a href="assets_ours/fullft/009_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/009_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/009_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/009_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/009.mp4"><video height="300" src="assets_ours/ours/009.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid">“A young couple walking in a heavy rain.”</p>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td><a href="assets_ours/fullft/010_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/010_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/010_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/010_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/010.mp4"><video height="300" src="assets_ours/ours/010.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> “Horse drinking water.”</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-video6">
+                  <table>
+                    <tbody>
+                      <th style="font-size: 20px; text-align: center;">Full-FT (50k)</th>
+                      <th style="font-size: 20px; text-align: center;">LORA-R32 (50k) </th>
+                      <th style="font-size: 20px; text-align: center;">Ours (10k)</th>
+                      <tr>
+                        <td><a href="assets_ours/fullft/011_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/011_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/011_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/011_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/011.mp4"><video height="300" src="assets_ours/ours/011.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid">“A confused grizzly bear in calculus class.”</p>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td><a href="assets_ours/fullft/012_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/012_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/012_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/012_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/012.mp4"><video height="300" src="assets_ours/ours/012.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> “Face of happy macho mature man looking at camera.”</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="item item-video7">
+                  <table>
+                    <tbody>
+                      <th style="font-size: 20px; text-align: center;">Full-FT (50k)</th>
+                      <th style="font-size: 20px; text-align: center;">LORA-R32 (50k) </th>
+                      <th style="font-size: 20px; text-align: center;">Ours (10k)</th>
+                      <tr>
+                        <td><a href="assets_ours/fullft/013_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/013_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/013_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/013_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/013.mp4"><video height="300" src="assets_ours/ours/013.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid">“A 3D model of an elephant origami. Studio lighting.”</p>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td><a href="assets_ours/fullft/014_fullft_50k.mp4"><video height="300" src="assets_ours/fullft/014_fullft_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/lora_r32/014_lorar32_50k.mp4"><video height="300" src="assets_ours/lora_r32/014_lorar32_50k.mp4" autoplay loop controls muted /> ></video></a></td>
+                        <td><a href="assets_ours/ours/014.mp4"><video height="300" src="assets_ours/ours/014.mp4" autoplay loop controls muted /> ></video></a></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5">
+                          <p class="prompt_global_vid"> “An astronaut is waving his hands on the moon.”</p>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <p><br></p>
+
+          </div>
+        </div>
+  </section>
+  <!-- End video grid multi ref -->
+
+
+   <!-- Video grid Extension -->
+   <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column custom-width">
+            <h2 class="title is-3">Text to Video</h2>
+            <h2 class="subtitle has-text-centered">Samples with 2048*1280*16 generated by VideoCrafter training with 1024*1024*16.</h2>
+            
+            <div class="content has-text-justified my_link">
+              <!-- <td colspan="3">
+                <p>
+                  We present the comparison results of our method with AnimateDiff(<a href="#animatediff">[5]</a>) for multi-reference style-guided Text-to-Video methods.
+                </p>
+                <p> More comparison results can be found in Our <a href="sm/supp.html">Supplementary</a>. </p>
+                <p><br></p>
+              </td> -->
+
+              <div id="results-carousel" class="carousel results-carousel" align="center">
+                <div class="item item-video1">
+                  <a href="assets_ours/fullft/001_fullft_50k.mp4"><video src="video_res/2048/0224_randk1-seed124.mp4" autoplay loop controls muted /> ></video></a>
+                  <p class="prompt_global_vid"> "Old man walking in the moorland valley, snowing heavily."</p>
+                </div>
+                <div class="item item-video2">
+                  <a href="assets_ours/fullft/001_fullft_50k.mp4"><video src="video_res/2048/0194_randk1-seed124.mp4" autoplay loop controls muted /> ></video></a>
+                  <p class="prompt_global_vid"> "Old man walking in the moorland valley, snowing heavily."</p>
+                </div>
+                <div class="item item-video3">
+                  <a href="assets_ours/fullft/001_fullft_50k.mp4"><video src="video_res/2048/0208_randk1-seed124.mp4" autoplay loop controls muted /> ></video></a>
+                  <p class="prompt_global_vid"> "Old man walking in the moorland valley, snowing heavily."</p>
+                </div>
+              </div>
+            </div>
+
+            <p><br></p>
+
+          </div>
+        </div>
+  </section>
+
+  <!--BibTex citation -->
+ 
+
+      <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+          <h2 class="title">BibTeX</h2>
+          <pre><code>@article{guo2024make,
+  title={Make a Cheap Scaling: A Self-Cascade Diffusion Model for Higher-Resolution Adaptation},
+  author={Guo, Lanqing and He, Yingqing and Chen, Haoxin and Xia, Menghan and Cun, Xiaodong and Wang, Yufei and Huang, Siyu and Zhang, Yong and Wang, Xintao and Chen, Qifeng and others},
+  journal={arXiv preprint arXiv:2402.10491},
+  year={2024}
+}</code></pre>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-8">
+              <div class="content">
+
+                <p>
+                  <br> This website is licensed under a <a rel="license"
+                    href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                    Commons Attribution-ShareAlike 4.0 International License</a>.
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Statcounter tracking code -->
+
+      <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+      <!-- End of Statcounter Code -->
+      <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+          const videoWrappers = document.querySelectorAll('.video-wrapper');
+
+          videoWrappers.forEach(wrapper => {
+            const defaultVideo = wrapper.querySelector('.default-video');
+            const aspectRatio = defaultVideo.videoWidth / defaultVideo.videoHeight;
+            const height = wrapper.offsetWidth / aspectRatio;
+
+            wrapper.style.height = `${height}px`;
+
+            wrapper.addEventListener('mouseenter', () => {
+              defaultVideo.pause();
+              hoverVideo.play();
+            });
+
+            wrapper.addEventListener('mouseleave', () => {
+              defaultVideo.play();
+              hoverVideo.pause();
+            });
+          });
+        });
+        $(document).ready(function () {
+          var carouselItems = $('.carousel .item');
+          var numItems = carouselItems.length;
+          var numVideos = 5;
+          var currentIndex = 0;
+
+          $('.carousel').on('click', function () {
+            currentIndex++;
+            if (currentIndex + numVideos <= numItems) {
+              carouselItems.removeClass('active');
+              carouselItems.slice(currentIndex, currentIndex + numVideos).addClass('active');
+            } else {
+              currentIndex = 0;
+              carouselItems.removeClass('active');
+              carouselItems.slice(currentIndex, currentIndex + numVideos).addClass('active');
+            }
+          });
+
+          carouselItems.slice(currentIndex, currentIndex + numVideos).addClass('active');
+        });
+      </script>
+    </div>
+  </section>
+</body>
+
+</html>
