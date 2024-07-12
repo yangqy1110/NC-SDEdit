@@ -23,7 +23,7 @@ We propose Noise Calibration,a method that substantially improves consistency of
 ✅ Plug-and-play <span style="color: red; font-weight: bold"></span>  &nbsp;&nbsp;&nbsp;&nbsp;
 
 
-<td><a href="https://github.com/yangqy1110/NC-SDEdit/tree/main/docs/video.gif"><img src=docs/video.gif width="500"></td>
+<td><a href="https://github.com/yangqy1110/NC-SDEdit/tree/main/docs/video.gif"><img src=docs/video.gif width="900"></td>
 
 
 ## Code of Noise Calibration
