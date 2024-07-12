@@ -22,6 +22,8 @@ We propose Noise Calibration,a method that substantially improves consistency of
 ✅ Less than <span style="color: red; font-weight: bold">10%</span> extra time &nbsp;&nbsp;&nbsp;&nbsp;
 ✅ Plug-and-play <span style="color: red; font-weight: bold"></span>  &nbsp;&nbsp;&nbsp;&nbsp;
 
+![Alt Text](docs/video.gif)
+
 ## Code of Noise Calibration
 ```Python
 import torch
